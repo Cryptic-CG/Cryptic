@@ -16,16 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? site.url),
   title: {
     default: `${site.name} — ${site.tagline}`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  verification: {
+    google: "RH_Ff1xEr295xPKjvclJvqC_zttD6j2_oa2waC-H5Jg",
+  },
   openGraph: {
     type: "website",
+    url: site.url,
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
