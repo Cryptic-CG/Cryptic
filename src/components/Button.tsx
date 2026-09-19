@@ -37,14 +37,36 @@ export function Button({
   onClick,
   children,
 }: Props) {
+  const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
   const external = /^https?:\/\//.test(href);
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        onClick={onClick}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classes}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  if (/^(mailto:|tel:)/.test(href)) {
+    return (
+      <a href={href} onClick={onClick} className={classes}>
+        {children}
+      </a>
+    );
+  }
+
   return (
     <Link
       href={href}
       onClick={onClick}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={classes}
     >
       {children}
     </Link>

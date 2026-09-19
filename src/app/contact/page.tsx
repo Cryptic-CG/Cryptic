@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const mailto = `mailto:${site.contactEmail}?subject=${encodeURIComponent(
-    `Contact from ${site.name} website`,
-  )}`;
+  const gmailUrl = new URL("https://mail.google.com/mail/");
+  gmailUrl.searchParams.set("view", "cm");
+  gmailUrl.searchParams.set("fs", "1");
+  gmailUrl.searchParams.set("to", site.contactEmail);
+  gmailUrl.searchParams.set("su", `Contact from ${site.name} website`);
 
   return (
     <Container className="max-w-3xl py-24 md:py-32">
@@ -35,8 +37,8 @@ export default function ContactPage() {
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-3">
           <CopyButton value={site.contactEmail} label="Copy email" />
-          <Button href={mailto} size="lg" variant="secondary">
-            Compose email
+          <Button href={gmailUrl.toString()} size="lg" variant="secondary">
+            Compose in Gmail
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4"
@@ -53,9 +55,11 @@ export default function ContactPage() {
           </Button>
         </div>
         <p className="mt-6 text-sm leading-relaxed text-zinc-500">
-          Using Gmail? Copy the address and paste it into the{" "}
-          <span className="font-medium text-zinc-300">To</span> field of a new
-          message, or use the compose button to open your default mail app.
+          The compose button opens Gmail&apos;s compose window with the address
+          pre-filled. If you&apos;re not signed in, Gmail will ask you to sign
+          in first. Using another mail provider? Copy the address and paste it
+          into the <span className="font-medium text-zinc-300">To</span> field
+          of a new message.
         </p>
       </div>
 
