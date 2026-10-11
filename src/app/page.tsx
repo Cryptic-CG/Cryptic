@@ -4,6 +4,7 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { Button } from "@/components/Button";
 import { FeaturedProject } from "@/components/FeaturedProject";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
+import { DemosShowcase } from "@/components/demos/DemosShowcase";
 import { site } from "@/config/site";
 import { getFeaturedProject } from "@/config/projects";
 
@@ -70,6 +71,32 @@ function ProjectsSection() {
   );
 }
 
+function DemosSection() {
+  return (
+    <section id="demos" className="scroll-mt-24 border-t border-zinc-900">
+      <Container className="py-24 md:py-28">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <SectionLabel>Demos</SectionLabel>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl">
+              Website demos, built to sell.
+            </h2>
+          </div>
+          <Button href="/demos" variant="ghost">
+            View all demos
+            <span aria-hidden="true">→</span>
+          </Button>
+        </div>
+        <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-zinc-400">
+          Explore examples of the websites we can design and build for real
+          businesses. Every demo is a working site you can click through.
+        </p>
+        <DemosShowcase className="mt-12" />
+      </Container>
+    </section>
+  );
+}
+
 function AboutSection() {
   const featured = getFeaturedProject();
 
@@ -116,6 +143,7 @@ export default function HomePage() {
       <Hero />
       <FeaturedProject />
       <ProjectsSection />
+      <DemosSection />
       <AboutSection />
     </>
   );

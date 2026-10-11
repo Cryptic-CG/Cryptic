@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { SiteChrome } from "@/components/SiteChrome";
 import { site } from "@/config/site";
 import "./globals.css";
 
@@ -60,11 +59,11 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Navbar />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <SiteChrome>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+        </SiteChrome>
       </body>
     </html>
   );

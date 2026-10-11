@@ -3,6 +3,9 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* Demo websites bring their own typography — see src/demos/<slug>. */
+  --font-display: var(--font-demo-display);
+  --font-body: var(--font-demo-body);
 }
 
 @theme {

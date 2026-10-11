@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 import { projects } from "@/config/projects";
+import { demos } from "@/config/demos";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -24,6 +25,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified,
         changeFrequency: "monthly",
         priority: 0.8,
+      }),
+    ),
+    {
+      url: `${site.url}/demos`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...demos.map(
+      (demo): MetadataRoute.Sitemap[number] => ({
+        url: `${site.url}${demo.route}`,
+        lastModified,
+        changeFrequency: "monthly",
+        priority: 0.7,
       }),
     ),
     {
